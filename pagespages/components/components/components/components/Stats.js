@@ -8,7 +8,9 @@ export default function Stats() {
     getDiscordData().then(setData);
   }, []);
 
-  if (!data) return <p style={{ textAlign: "center" }}>Loading stats...</p>;
+  if (!data) {
+    return <p style={{ textAlign: "center" }}>Loading stats...</p>;
+  }
 
   return (
     <section style={{
@@ -17,9 +19,9 @@ export default function Stats() {
       gap: "40px",
       marginBottom: "40px"
     }}>
-      <div>🟢 Online: {data.presence_count}</div>
-      <div>👥 Members: {data.members.length}</div>
-      <div>💬 Channels: {data.channels.length}</div>
+      <div>🟢 Online: {data.presence_count ?? 0}</div>
+      <div>👥 Members: {data.members?.length ?? 0}</div>
+      <div>💬 Channels: {data.channels?.length ?? 0}</div>
     </section>
   );
 }
